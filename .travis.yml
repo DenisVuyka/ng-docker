@@ -22,6 +22,6 @@ script:
   - npm run test -- --single-run --no-progress
 
 after_success:
-  - docker build -t denysvuykapub/ng-docker .
+  - docker build -t $DOCKER_USERNAME/ng-docker .
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - docker push denysvuykapub/ng-docker
+  - docker push $DOCKER_USERNAME/ng-docker
