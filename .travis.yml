@@ -28,8 +28,9 @@ after_success:
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
   - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
   - export TAG=`if [ "$BRANCH" == "master" ]; then echo "latest"; else echo $BRANCH ; fi`
-  - docker build -t $DOCKER_REPO:$COMMIT .
-  - docker tag $DOCKER_REPO:$COMMIT $DOCKER_REPO:$TAG
+  #- docker build -t $DOCKER_REPO:$COMMIT .
+  #- docker tag $DOCKER_REPO:$COMMIT $DOCKER_REPO:$TAG
+  - docker build -t $DOCKER_REPO:$TAG .
   - docker tag $DOCKER_REPO:$COMMIT $DOCKER_REPO:travis-$TRAVIS_BUILD_NUMBER
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
   - docker push $DOCKER_REPO
